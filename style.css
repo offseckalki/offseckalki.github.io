@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    padding: 0;
+    background : rgba(1,1,1,255);
+    background-size: 100%;
+  }
+  .box{
+    width: 450px;
+    background: rgba(0, 0, 0, 0.253);
+    padding: 40px;
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+    color: rgb(60,136,50,255);
+    font-family:monospace;
+  }
+  .box-img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+  }
+  .box h1{
+    font-size: 40px;
+    letter-spacing: 4px;
+    font-weight: 100;
+    text-align: center;
+  }
+  .box h5{
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 100;
+  }
+  .box h4{
+    text-align: center;
+  }
+  .box p{
+    text-align: justify;
+    font-size: 15px;
+  }
+  .box p2{
+text-align: justify;
+font-size: 15px;
+color: #ff0000;
+  }
+  .box p4{
+    text-align: justify;
+    font-size: 15px;
+    color: rgb(0, 38, 255);
+  }
+  ul{
+    margin: 0;
+    padding: 0;
+  }
+  .box li{
+    display: inline-block;
+    margin: 6px;
+    list-style: none;
+  }
+  .box li a{
+    color: rgb(255, 253, 253);
+    text-decoration: none;
+    font-size: 60px;
+    transition: all ease-in-out 250ms;
+  }
+  .box li a:hover{
+    color: #ff0000;
+  }
+  .blinker { 
+    animation-name: blinker;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1,0,0,1);
+    animation-duration: 1s;
+ 
+    display: inline-block;
+    width: 5px;
+    height: 16px;
+    margin-left: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(white,.3);
+    background: #20ad04;
+  
+  }
+  
+  @keyframes blinker { 
+    from { opacity: 1.0; } to { opacity: 0.0; }
+  }
+  
