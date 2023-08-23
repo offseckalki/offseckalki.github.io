@@ -134,6 +134,7 @@ ul{
   margin-top: 1%;
   color: rgb(60,136,50,255);
   font-family:monospace;
+  animation:ease-in;
 }
 .box2 p{
   color: rgb(60,136,50,255);;
