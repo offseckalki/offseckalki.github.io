@@ -8,7 +8,21 @@ body{
   width: 595px;
   background: rgb(0, 0, 0);
   padding: 1px;
-  text-align: center;
+  text-align: justify;
+  margin: auto;
+  margin-top: 1%;
+  color: rgb(60,136,50,255);
+  font-family:monospace;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 5%;
+}
+.box:hover
+{
+  width: 595px;
+  background-color: rgba(250, 250, 250, 0.253);
+  transition: background-color 1.5s;
+  padding: 1px;
+  text-align: justify;
   margin: auto;
   margin-top: 1%;
   color: rgb(60,136,50,255);
@@ -17,12 +31,26 @@ body{
   border-radius: 5%;
 }
 .box-img{
+  display: block;
   border-radius: 55%;
   width: 250px;
   height: 250px;
   box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.6);
-  margin-top: 15px;
-  margin-left: 350px;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.box-img:hover
+{
+  display: block;
+  border-radius: 55%;
+  width: 250px;
+  height: 250px;
+  box-shadow: 5px 10px 40px rgb(228, 121, 33);
+  transition: box-shadow 1.5s;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
 }
  h2
 {
@@ -31,12 +59,24 @@ body{
   font-size: 30px;
 }
 h1{
-  font-size: 40px;
+  font-size: 50px;
+  width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 4px;
+  font-weight: 180;
+  text-align: center;
+  align-items: center;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
+}
+h1:hover
+{
+  font-size: 52px;
   letter-spacing: 4px;
   font-weight: 100;
   text-align: center;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527) ;
-
+  color: rgb(82, 57, 48);
+  text-shadow: 5px 5px 5px rgba(134, 118, 105, 0.801);
 }
 h4{
   font-size: 22px;
@@ -89,22 +129,19 @@ ul{
   list-style: none;
   box-shadow:10px 10px 10px rgba(0, 0, 0, 0.644);
   box-sizing: content-box;
-  height: 70px;
+  height: 75px;
   width: 90px;
 }
 .box3 li a{
   color: rgba(0, 0, 0, 0.486);
   text-decoration: none;
   font-size: 60px;
-  
   transition: all ease-in-out 250ms;
 }
 .box3 li a:hover{
   color: #000000;
-  margin: 13px;
+  font-size: 75px;
   padding-top: 10%;
-  width: 50px;
-  height: max-content;
 }
 .blinker { 
   animation-name: blinker;
@@ -174,7 +211,7 @@ ul{
 
 }
 .box2{
-  width: 600px;
+  width: 900px;
   background: rgb(0, 0, 0);
   padding: 1px;
   text-align: center;
@@ -251,10 +288,13 @@ ul{
 }
 .posim1
 {
+  display: block;
+  margin-left: justify;
+  margin-right: justify;
+  width: 50%;
   border-radius: 55%;
-  width: 250px;
-  height: 250px;
-  position: static;}
+  position: static;
+}
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -263,6 +303,9 @@ ul{
 }
 .imgart
 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 350px;
   height: 350px;
   border-radius: 90%;
