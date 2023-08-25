@@ -1,24 +1,49 @@
 body{
   margin: 0;
   padding: 0;
-  background : rgba(1,1,1,255);
+  background : rgb(255, 255, 255);
   background-size: 100%;
 }
 .box{
-  width: 585px;
-  background: rgba(0, 0, 0, 0.253);
+  width: 595px;
+  background: rgb(0, 0, 0);
   padding: 1px;
   text-align: center;
   margin: auto;
   margin-top: 1%;
   color: rgb(60,136,50,255);
   font-family:monospace;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 5%;
 }
 .box-img{
   border-radius: 55%;
   width: 250px;
   height: 250px;
-  
+  box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.6);
+  margin-top: 15px;
+  margin-left: 350px;
+}
+ h2
+{
+  color: rgb(233, 137, 13);
+  text-align: center;
+  font-size: 30px;
+}
+h1{
+  font-size: 40px;
+  letter-spacing: 4px;
+  font-weight: 100;
+  text-align: center;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527) ;
+
+}
+h4{
+  font-size: 22px;
+  letter-spacing: 4px;
+  font-weight: 100;
+  text-align: center;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527) ;
 
 }
 .box h1{
@@ -38,6 +63,7 @@ body{
 .box p{
   text-align: justify;
   font-size: 15px;
+  margin-left: 20px;
 }
 .box p2{
 text-align: justify;
@@ -56,19 +82,29 @@ ul{
   margin: 0;
   padding: 0;
 }
-.box li{
+.box3 li{
   display: inline-block;
-  margin: 6px;
+  margin-top: 50px;
+  margin: 10px;
   list-style: none;
+  box-shadow:10px 10px 10px rgba(0, 0, 0, 0.644);
+  box-sizing: content-box;
+  height: 70px;
+  width: 90px;
 }
-.box li a{
-  color: rgb(255, 253, 253);
+.box3 li a{
+  color: rgba(0, 0, 0, 0.486);
   text-decoration: none;
   font-size: 60px;
+  
   transition: all ease-in-out 250ms;
 }
-.box li a:hover{
-  color: #ff0000;
+.box3 li a:hover{
+  color: #000000;
+  margin: 13px;
+  padding-top: 10%;
+  width: 50px;
+  height: max-content;
 }
 .blinker { 
   animation-name: blinker;
@@ -91,7 +127,7 @@ ul{
   from { opacity: 1.0; } to { opacity: 0.0; }
 }
 .topnav {
-  background-color: #0000005e;
+  background-color: #ffffff;
   overflow: hidden;
   text-align: center;
   padding-top: 50px;
@@ -102,7 +138,7 @@ ul{
 .topnav a {
   margin: 100 ;
   float: center;
-  color: #f2f2f2;
+  color: #d13838;
   text-align: center;
   padding: 5px 10px;
   text-decoration: none;
@@ -139,7 +175,7 @@ ul{
 }
 .box2{
   width: 600px;
-  background: rgba(0, 0, 0, 0.253);
+  background: rgb(0, 0, 0);
   padding: 1px;
   text-align: center;
   margin: auto;
@@ -147,6 +183,18 @@ ul{
   color: rgb(60,136,50,255);
   font-family:monospace;
   animation:ease-in;
+}
+.box3{
+  width: 600px;
+  background: rgba(255, 248, 248, 0.404);
+  padding: 1px;
+  text-align: center;
+  margin: auto;
+  margin-top: 1%;
+  color: rgb(60,136,50,255);
+  font-family:monospace;
+  animation:ease-in;
+  border-radius: 1%;
 }
 .box2 p{
   color: rgb(60,136,50,255);;
@@ -220,4 +268,27 @@ ul{
   border-radius: 90%;
   position: static;
   margin-left: 20%;
+}
+.readmore
+{
+  color: rgb(0, 0, 0);
+  background-color: rgb(252, 138, 0);
+  border: none;
+  height: 45px;
+  width: 90px;
+  font-size: 14px;
+  size: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 1s;
+  transition: color 1.5s;
+}
+.readmore:hover
+{
+  color:rgb(255, 255, 255);
+  background-color: rgb(255, 51, 0);
+}
+.readmore:active
+{
+  opacity: 0.2;
 }
