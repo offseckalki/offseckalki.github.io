@@ -125,6 +125,18 @@ ul{
   padding-top: 2px;
   border-radius: 10%;
 }
+.activep
+{
+  background-color: #20ad04;
+  color: #f2f2f2;
+  padding-top: 2%;
+  border-radius: 5%;
+  font-size: 22px;
+  float: center;
+  overflow: hidden;
+  opacity: 0.5;
+
+}
 .box2{
   width: 600px;
   background: rgba(0, 0, 0, 0.253);
@@ -158,7 +170,7 @@ ul{
 {
   color: rgb(255, 174, 0);
   text-align: center;
-  font-size: 70px;
+  font-size: 60px;
   font-family: monospace;
 }
 .textc 
@@ -186,4 +198,24 @@ ul{
   color: aliceblue;
   text-align: justify;
 
+}
+.posim1
+{
+  border-radius: 55%;
+  width: 250px;
+  height: 250px;
+  position: static;}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+.imgart
+{
+  width: 350px;
+  height: 350px;
+  border-radius: 90%;
+  position: static;
+  margin-left: 20%;
 }
