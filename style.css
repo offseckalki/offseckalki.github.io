@@ -157,6 +157,7 @@ ul{
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(white,.3);
   background: #20ad04;
+  margin-top: 1px;
 
 }
 
@@ -334,4 +335,43 @@ ul{
 .readmore:active
 {
   opacity: 0.2;
+}
+.resbutton
+{
+  border: none;
+  color: rgb(39, 117, 2);
+  padding: 15px 32px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #50a040;
+}
+.resbutton:hover
+{
+  border: none;
+  color: rgb(235, 154, 4);
+  padding: 15px 32px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #f8c00679;
+}
+.resbutton:active
+{
+  border: none;
+  color: rgb(250, 5, 5);
+  padding: 15px 32px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #f806068f;
 }
