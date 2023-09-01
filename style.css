@@ -369,6 +369,7 @@ ul{
 }
 
 .btn {
+ 
   width: 180px;
   height: 60px;
   align-self: center;
@@ -377,6 +378,7 @@ ul{
   border: 0.5px solid #000000bb;
   outline: none;
   transition: 1s ease-in-out;
+  box-shadow: 5px 10px 10px  rgba(0, 0, 0, 0.301);
 }
 
 svg {
@@ -394,6 +396,7 @@ svg {
   transition: 1s ease-in-out;
   background: #000000;
   border: 0.5px solid #fffffff6;
+  box-shadow: 5px 10px 5px  rgba(0, 0, 0, 0.849);
 }
 
 .btn:hover svg {
