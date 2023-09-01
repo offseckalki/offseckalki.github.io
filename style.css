@@ -374,7 +374,7 @@ ul{
   align-self: center;
   cursor: pointer;
   background: rgb(255, 255, 255);
-  border: 0.5px solid #63636370;
+  border: 0.5px solid #000000bb;
   outline: none;
   transition: 1s ease-in-out;
 }
@@ -393,6 +393,7 @@ svg {
 .btn:hover {
   transition: 1s ease-in-out;
   background: #000000;
+  border: 0.5px solid #fffffff6;
 }
 
 .btn:hover svg {
