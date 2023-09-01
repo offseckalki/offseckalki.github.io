@@ -336,42 +336,77 @@ ul{
 {
   opacity: 0.2;
 }
-.resbutton
-{
-  border: none;
-  color: rgb(39, 117, 2);
-  padding: 15px 32px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  background-color: #50a040;
+
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+
+.body3{
+  margin: 0;
+  padding: 0;
+  background : rgb(255, 255, 255);
+  background-size: 100%;
 }
-.resbutton:hover
-{
-  border: none;
-  color: rgb(235, 154, 4);
-  padding: 15px 32px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  background-color: #f8c00679;
+
+.container3 {
+    width: auto;
+    background: rgba(0, 0, 0, 0);
+    padding: 1px;
+    text-align: center;
+    margin: auto;
+    margin-top: 1%;
+    color: rgb(60,136,50,255);
+    font-family:monospace;
+    border-radius: 5%;
 }
-.resbutton:active
-{
-  border: none;
-  color: rgb(250, 5, 5);
-  padding: 15px 32px;
-  text-align: center;
+
+.center2 {
+  width: 180px;
+  height: 60px;
+  display: block;
+ 
   margin-left: auto;
   margin-right: auto;
-  font-size: 16px;
-  margin: 4px 2px;
+  position: relative;
+}
+
+.btn {
+  width: 180px;
+  height: 60px;
+  align-self: center;
   cursor: pointer;
-  background-color: #f806068f;
+  background: rgb(255, 255, 255);
+  border: 0.5px solid #63636370;
+  outline: none;
+  transition: 1s ease-in-out;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #ffffff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+}
+
+.btn:hover {
+  transition: 1s ease-in-out;
+  background: #000000;
+}
+
+.btn:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.btn span {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: 100;
+}
+.btn:hover span
+{ 
+  color: rgb(255, 255, 255);
+  font-size: 19px;
+  font-weight: 100;
 }
