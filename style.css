@@ -58,6 +58,20 @@ body{
   text-align: center;
   font-size: 30px;
 }
+body h{
+  display: block;
+  font-style: oblique;
+  width: 900px;
+  font-size:85px;
+  
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 4px;
+  font-weight: 180;
+  text-align: center;
+  align-items: center;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
+}
 h1{
   font-size: 50px;
   width: 270px;
@@ -213,26 +227,16 @@ ul{
 }
 .box2{
   width: 900px;
-  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.432);
   padding: 1px;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   margin: auto;
   margin-top: 1%;
-  color: rgb(60,136,50,255);
   font-family:monospace;
   animation:ease-in;
-}
-.box3{
-  width: 600px;
-  background: rgba(255, 248, 248, 0.404);
-  padding: 1px;
-  text-align: center;
-  margin: auto;
-  margin-top: 1%;
-  color: rgb(60,136,50,255);
-  font-family:monospace;
-  animation:ease-in;
-  border-radius: 1%;
 }
 .box2 p{
   color: rgb(60,136,50,255);;
@@ -252,6 +256,63 @@ ul{
   text-align: justify;
   color: aqua;
 }
+.box4{
+  width: 690px;
+  background: rgba(0, 0, 0, 0.753);
+  padding: 1px;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin: auto;
+  margin-top: 1%;
+  font-family:monospace;
+  animation:ease-in;
+}
+.box4:hover{
+  width: 690px;
+  background-color: rgb(0, 0, 0);
+  transition: background-color 1.5s;
+  padding: 1px;
+  text-align: justify;
+  margin: auto;
+  margin-top: 1%;
+  color: rgb(60,136,50,255);
+  font-family:monospace;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+
+}
+.box4 p{
+  color: rgb(60,136,50,255);;
+  font-size: 15px;
+  text-align: justify;
+}
+.box4 p2{
+  text-align: justify;
+  font-size: 15px;
+  color: #ff0000;
+}
+.box4 p4{
+  text-align: justify;
+  color:rgb(0, 38, 255) ;
+}
+.box4 p6{
+  text-align: justify;
+  color: aqua;
+}
+.box3{
+  width: 600px;
+  background: rgba(255, 248, 248, 0.404);
+  padding: 1px;
+  text-align: center;
+  margin: auto;
+  margin-top: 1%;
+  color: rgb(60,136,50,255);
+  font-family:monospace;
+  animation:ease-in;
+  border-radius: 1%;
+}
+
 .headingc
 {
   color: rgb(255, 174, 0);
@@ -263,11 +324,14 @@ ul{
 }
 .textc 
 {
-  color: aliceblue;
-  text-align: center;
-  font-style: italic;
+  color: rgb(0, 0, 0);
+  text-align:center;
+  font-style: italic bold;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 28px;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 .headingc2
@@ -290,11 +354,39 @@ ul{
 .posim1
 {
   display: block;
-  margin-left: justify;
-  margin-right: justify;
+  margin-left: auto;
+  margin-right: auto;
   width: 50%;
-  border-radius: 55%;
+  border-radius: 35%;
   position: static;
+}
+.posim2
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border-radius: 20%;
+  position: static;
+}
+
+bp{
+  text-align: center;
+  font-size: 24px;
+  color: #000000;
+
+}
+bpa{
+  text-align: justify;
+  font-size: 18px;
+  margin-left: 20px;
+  color: #000000;
+}
+bpd{
+  text-align: justify;
+  font-size: 18px;
+  margin-left: 20px;
+  color: #000000;
 }
 .container {
   max-width: 800px;
@@ -313,6 +405,16 @@ ul{
   position: static;
   margin-left: 20%;
 }
+.imgart2
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: 400px;
+  border-radius: 1%;
+  position: -ms-page ;
+}
 .readmore
 {
   color: rgb(0, 0, 0);
@@ -326,6 +428,9 @@ ul{
   cursor: pointer;
   transition: background-color 1s;
   transition: color 1.5s;
+  margin-top: 2%;
+  text-align: center;
+  position: static;
 }
 .readmore:hover
 {
@@ -396,7 +501,7 @@ svg {
   transition: 1s ease-in-out;
   background: #000000;
   border: 0.5px solid #fffffff6;
-  box-shadow: 5px 10px 5px  rgba(0, 0, 0, 0.849);
+  box-shadow: 7px 10px 10px 5px rgba(0, 0, 0, 0.849);
 }
 
 .btn:hover svg {
