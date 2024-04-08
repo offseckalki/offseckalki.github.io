@@ -152,6 +152,24 @@ ul{
   font-size: 60px;
   transition: all ease-in-out 250ms;
 }
+.twhov{
+  opacity: 0;  
+}
+.twhov:hover{
+  opacity: 1;
+}
+.fa-x-twitter:hover{
+  color: rgb(0, 0, 0); 
+}
+.fa-instagram:hover {
+  color:red ;
+}
+.fa-discord:hover{
+  color:#586ee8;
+}
+.fa-cube:hover{
+  color: #69e94f;
+}
 .box3 li a:hover{
   color: #000000;
   font-size: 75px;
