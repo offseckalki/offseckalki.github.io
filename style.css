@@ -43,11 +43,12 @@ body{
 .box-img:hover
 {
   display: block;
-  border-radius: 55%;
-  width: 250px;
-  height: 250px;
+  border-radius: 5%;
+  width: 255px;
+  height: 255px;
+  
   box-shadow: 5px 10px 40px rgb(228, 121, 33);
-  transition: box-shadow 1.5s;
+  transition: box-shadow 0.5s;
   margin-top: 1%;
   margin-left: auto;
   margin-right: auto;

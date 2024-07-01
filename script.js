@@ -4,6 +4,9 @@ function handleKeyPress(event) {
         if (input.toLowerCase() === "shell") {
             window.location.href = "https://offseckalki.github.io/shell";
         } else {
+            if (input.toLowerCase()=="")
+
+            
             alert("Invalid command");
         }
     }
