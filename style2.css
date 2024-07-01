@@ -1,168 +1,167 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: rgb(255, 255, 255);
-    background-size: 100%;
-  }
-  
-  .box {
-    width: 595px;
-    background: rgb(0, 0, 0);
-    padding: 1px;
-    text-align: justify;
-    margin: auto;
-    margin-top: 1%;
-    color: rgb(60, 136, 50);
-    font-family: monospace;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
-    border-radius: 5%;
-  }
-  
-  .box:hover {
-    background-color: rgba(250, 250, 250, 0.253);
-    transition: background-color 1.5s;
-  }
-  
-  .box-img {
-    display: block;
-    border-radius: 55%;
-    width: 250px;
-    height: 250px;
-    box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.6);
-    margin-top: 1%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .box-img:hover {
-    box-shadow: 5px 10px 40px rgb(228, 121, 33);
-    transition: box-shadow 1.5s;
-  }
-  
-  h1 {
-    font-size: 50px;
-    width: 270px;
-    margin-left: auto;
-    margin-right: auto;
-    letter-spacing: 4px;
-    font-weight: 180;
-    text-align: center;
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
-  }
-  
-  h1:hover {
-    font-size: 52px;
-    color: rgb(82, 57, 48);
-    text-shadow: 5px 5px 5px rgba(134, 118, 105, 0.801);
-  }
-  
-  h4 {
-    font-size: 22px;
-    letter-spacing: 4px;
-    font-weight: 100;
-    text-align: center;
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
-  }
-  
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .box3 li {
-    display: inline-block;
-    margin: 10px;
-    list-style: none;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.644);
-    box-sizing: content-box;
-    height: 75px;
-    width: 90px;
-  }
-  
-  .box3 li a {
-    color: rgba(0, 0, 0, 0.486);
-    text-decoration: none;
-    font-size: 60px;
-    transition: all ease-in-out 250ms;
-  }
-  
-  .box3 li a:hover {
-    color: #000000;
-    font-size: 75px;
-  }
-  
-  #terminal {
-    font-family: monospace;
-    background: #000;
-    color: #00ff00;
-    padding: 20px;
-    height: 400px;
-    overflow-y: scroll;
-  }
-  
-  input.terminalInput {
-    width: 100%;
-    border: none;
-    background: none;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-  }
-  
-  .topnav {
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  .topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: sans-serif;
-    font-weight: bold;
-  }
-  
-  svg.border {
-    display: block;
-  }
-  
-  polyline.bg-line {
-    stroke: #eee;
-    stroke-width: 3;
-    fill: none;
-  }
-  
-  polyline.hl-line {
-    stroke: #aaa;
-    stroke-width: 3;
-    fill: none;
-    stroke-dasharray: 0 180 480;
-    stroke-dashoffset: 0;
-    transition: stroke-dasharray 0.5s ease;
-  }
-  
-  .btn:hover polyline.hl-line {
-    stroke-dasharray: 180 480;
-  }
-  
+  margin: 0;
+  padding: 0;
+  background: rgb(255, 255, 255);
+  background-size: 100%;
+}
+
+.box {
+  width: 595px;
+  background: rgb(0, 0, 0);
+  padding: 1px;
+  text-align: justify;
+  margin: auto;
+  margin-top: 1%;
+  color: rgb(60, 136, 50);
+  font-family: monospace;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 5%;
+}
+
+.box:hover {
+  background-color: rgba(250, 250, 250, 0.253);
+  transition: background-color 1.5s;
+}
+
+.box-img {
+  display: block;
+  border-radius: 55%;
+  width: 250px;
+  height: 250px;
+  box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.6);
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box-img:hover {
+  box-shadow: 5px 10px 40px rgb(228, 121, 33);
+  transition: box-shadow 1.5s;
+}
+
+h1 {
+  font-size: 50px;
+  width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 4px;
+  font-weight: 180;
+  text-align: center;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
+}
+
+h1:hover {
+  font-size: 52px;
+  color: rgb(82, 57, 48);
+  text-shadow: 5px 5px 5px rgba(134, 118, 105, 0.801);
+}
+
+h4 {
+  font-size: 22px;
+  letter-spacing: 4px;
+  font-weight: 100;
+  text-align: center;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.box3 li {
+  display: inline-block;
+  margin: 10px;
+  list-style: none;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.644);
+  box-sizing: content-box;
+  height: 75px;
+  width: 90px;
+}
+
+.box3 li a {
+  color: rgba(0, 0, 0, 0.486);
+  text-decoration: none;
+  font-size: 60px;
+  transition: all ease-in-out 250ms;
+}
+
+.box3 li a:hover {
+  color: #000000;
+  font-size: 75px;
+}
+
+#terminal {
+  font-family: monospace;
+  background: #000;
+  color: #00ff00;
+  padding: 20px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+input.terminalInput {
+  width: 100%;
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+svg.border {
+  display: block;
+}
+
+polyline.bg-line {
+  stroke: #eee;
+  stroke-width: 3;
+  fill: none;
+}
+
+polyline.hl-line {
+  stroke: #aaa;
+  stroke-width: 3;
+  fill: none;
+  stroke-dasharray: 0 180 480;
+  stroke-dashoffset: 0;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.btn:hover polyline.hl-line {
+  stroke-dasharray: 180 480;
+}
