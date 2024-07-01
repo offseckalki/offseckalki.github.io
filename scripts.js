@@ -203,7 +203,7 @@ function cmdHistory(args) {
 
 function cmdAbout(args) {
     addTextLines(`\nThis project is my attempt to develop the portfolio which might correctly represent "WHOAMI".\n
-    This terminal based portfolio is inspired by <a class="highlight" href="ravitheja.dev">Ravi</a>
+    This terminal based portfolio is inspired by <a class="highlight" href="ravitheja.dev">Ravi</a>\n
     The repository details are obtained from the Github public API and is written in vanilla Javascript.\n
     Project source can be found at <a class="highlight" href="https://github.com/offseckalki">https://github.com/offseckalki</a>.`, infoColor);
 }
