@@ -1,12 +1,10 @@
 body {
     background-color: rgb(48, 35, 68);
-    color: white;
+    color: rgb(128, 80, 80);
     font-family: 'Courier New', Courier, monospace;
 }
 
-#gui {
-    margin: 10px;
-}
+
 
 button {
     background-color: orange;
