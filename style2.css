@@ -1,167 +1,215 @@
 body {
-  margin: 0;
-  padding: 0;
-  background: rgb(255, 255, 255);
-  background-size: 100%;
+    background-color: rgb(48, 35, 68);
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.box {
-  width: 595px;
-  background: rgb(0, 0, 0);
-  padding: 1px;
-  text-align: justify;
-  margin: auto;
-  margin-top: 1%;
-  color: rgb(60, 136, 50);
-  font-family: monospace;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
-  border-radius: 5%;
+#gui {
+    margin: 10px;
 }
 
-.box:hover {
-  background-color: rgba(250, 250, 250, 0.253);
-  transition: background-color 1.5s;
+button {
+    background-color: orange;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
-.box-img {
-  display: block;
-  border-radius: 55%;
-  width: 250px;
-  height: 250px;
-  box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.6);
-  margin-top: 1%;
-  margin-left: auto;
-  margin-right: auto;
+.terminal {
+    background-color: #000;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
 }
 
-.box-img:hover {
-  box-shadow: 5px 10px 40px rgb(228, 121, 33);
-  transition: box-shadow 1.5s;
+.commandLine {
+    display: flex;
 }
 
-h1 {
-  font-size: 50px;
-  width: 270px;
-  margin-left: auto;
-  margin-right: auto;
-  letter-spacing: 4px;
-  font-weight: 180;
-  text-align: center;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
+.shellPrefix {
+    margin-right: 1px;
 }
 
-h1:hover {
-  font-size: 52px;
-  color: rgb(82, 57, 48);
-  text-shadow: 5px 5px 5px rgba(134, 118, 105, 0.801);
+.commandLineInput {
+    flex: 1;
+    color: white;
 }
 
-h4 {
-  font-size: 22px;
-  letter-spacing: 4px;
-  font-weight: 100;
-  text-align: center;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.527);
+.centeredTable {
+    margin: 20px auto;
+    border-collapse: collapse;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+.centeredTable th, .centeredTable td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
 }
 
-.box3 li {
-  display: inline-block;
-  margin: 10px;
-  list-style: none;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.644);
-  box-sizing: content-box;
-  height: 75px;
-  width: 90px;
+.progressbar {
+    display: inline-block;
+    height: 10px;
+    width: 100px;
+    background-color: #ddd;
 }
 
-.box3 li a {
-  color: rgba(0, 0, 0, 0.486);
-  text-decoration: none;
-  font-size: 60px;
-  transition: all ease-in-out 250ms;
+.progressbar span {
+    display: block;
+    height: 100%;
+    background-color: #4caf50;
+}
+abody {
+    background-color: #000;
+    font-family: 'Lucida Console', 'Monaco', monospace;
+    font-size: .9rem;
+}
+#wrapper {
+    color: lightgray;
+    display: flex;
+    flex-direction: column;
+}
+#container {
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+}
+div.commandLine {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: stretch;
+    text-indent: 5px;
+}
+span.shellPrefix {
+    order: 1;
+}
+div.commandLineInput {
+    display: flex;
+    order: 2;
+    flex-grow: 1;
+    padding-left: 10px;
+    color: #fff;
+}
+div:focus {
+    outline: none;
+}
+table.centeredTable {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* border: 2px solid lightgray; */
+    border-top: none;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+table.centeredTable > thead > tr > th {
+    text-align: left;
+    text-transform: uppercase;
+    background-color: #222;
+    border: none;
+    padding-left: 5px;
+}
+table.centeredTable > tbody > tr > td {
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid rgba(154, 205, 50, 0.25);
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow: hidden;
+}
+table.centeredTable > tbody > tr.clickable:hover {
+    background-color: #333;
+}
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+a:hover {
+    color: rgb(100%, 100%, 20%);
+}
+a.clickable {
+    transition: color 1s ease;
+    cursor: pointer;
+}
+span.info {
+    color: rgb(100%, 100%, 20%);
+}
+div.resultTitle {
+    color: #fff;
+}
+.welcomeText {
+    color: lightgray;
+}
+.mb-10 {
+    margin-bottom: 10px;
+}
+.fixedHeader {
+    padding: 10px;
+    background: #000;
+    color: lightgray;
+}
+span.progressbar {
+    color: rgb(100%, 100%, 20%);
+}
+.u {
+    text-decoration: underline !important;
+}
+.muted {
+    color: gray;
+}
+a.demoLink {
+    color: rgb(100%, 100%, 20%);
+    text-decoration: none;
+}
+a.demoLink:hover {
+    text-decoration: underline;
+}
+.highlight {
+    color: rgb(100%, 100%, 20%);
+}
+span.badge {
+    background-color: rgb(234, 238, 137);
+    color: #101010;
+    font-size: 0.75rem;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 2px;
+    margin-left: 2px;
+}
+.welcome-greeting {
+    color: rgb(100%, 100%, 20%);
+    font-family: monospace;
 }
 
-.box3 li a:hover {
-  color: #000000;
-  font-size: 75px;
+@media only screen and (max-device-width: 575px) {
+    .welcome-greeting {
+        font-size: 5px;
+    }
 }
-
-#terminal {
-  font-family: monospace;
-  background: #000;
-  color: #00ff00;
-  padding: 20px;
-  height: 400px;
-  overflow-y: scroll;
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    .welcome-greeting {
+        font-size: 9px;
+    }
 }
-
-input.terminalInput {
-  width: 100%;
-  border: none;
-  background: none;
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .welcome-greeting {
+        font-size: 12px;
+    }
 }
-
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  font-family: sans-serif;
-  font-weight: bold;
-}
-
-svg.border {
-  display: block;
-}
-
-polyline.bg-line {
-  stroke: #eee;
-  stroke-width: 3;
-  fill: none;
-}
-
-polyline.hl-line {
-  stroke: #aaa;
-  stroke-width: 3;
-  fill: none;
-  stroke-dasharray: 0 180 480;
-  stroke-dashoffset: 0;
-  transition: stroke-dasharray 0.5s ease;
-}
-
-.btn:hover polyline.hl-line {
-  stroke-dasharray: 180 480;
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .welcome-greeting {
+        font-size: 1rem;
+    }
 }
