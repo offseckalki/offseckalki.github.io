@@ -1,13 +1,29 @@
-function handleKeyPress(event) {
-    if (event.key === "Enter") {
-        const input = document.getElementById('terminalInput').value;
-        if (input.toLowerCase() === "shell") {
-            window.location.href = "https://offseckalki.github.io/shell";
-        } else {
-            if (input.toLowerCase()=="")
+document.addEventListener('DOMContentLoaded', () => {
+    const particles = document.querySelectorAll('.particle-bg .particle');
+    const heroSection = document.querySelector('.hero-section');
 
-            
-            alert("Invalid command");
-        }
+    // Particle Movement with Mouse
+    heroSection.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        particles.forEach(particle => {
+            const speed = particle.getAttribute('data-speed');
+            const x = (window.innerWidth - mouseX * speed) / 100;
+            const y = (window.innerHeight - mouseY * speed) / 100;
+
+            particle.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+    });
+
+    // Create particles dynamically
+    const particleCount = 50; // Adjust the number of particles
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.animationDuration = `${Math.random() * 5 + 5}s`; // Random animation duration between 5s and 10s
+        particle.style.opacity = Math.random(); // Random opacity
+        document.querySelector('.particle-bg').appendChild(particle);
     }
-}
+});
