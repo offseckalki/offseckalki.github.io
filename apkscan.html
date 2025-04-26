@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APK Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+            width: 50%;
+            margin: auto;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        #selectBtn { background-color: orange; }
+        #uploadBtn { background-color: red; color: white; }
+        #scanBtn { background-color: blue; color: white; }
+        #progressBar {
+            width: 50%;
+            margin: auto;
+            height: 20px;
+            background: #555;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        #progressBar div {
+            height: 100%;
+            width: 0;
+            background: lime;
+            transition: width 0.5s;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #222;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload APK to Scan</h2>
+        <input type="file" id="fileInput" accept=".apk" style="display:none;">
+        <button class="button" id="selectBtn">Choose APK File</button>
+        <p id="fileName">No file selected</p>
+
+        <button class="button" id="uploadBtn" disabled>Upload</button>
+        <button class="button" id="scanBtn" disabled>Scan APK</button>
+
+        <div id="progressBar" style="display:none;">
+            <div></div>
+        </div>
+
+        <div id="result">
+            <h3>Scan Result</h3>
+            <pre id="resultText"></pre>
+        </div>
+    </div>
+
+    <script>
+        let selectedFile = null;
+        let uploadedFileName = null;
+
+        document.getElementById("selectBtn").addEventListener("click", function() {
+            document.getElementById("fileInput").click();
+        });
+
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            selectedFile = event.target.files[0];
+            if (selectedFile) {
+                document.getElementById("fileName").innerText = "Selected: " + selectedFile.name;
+                document.getElementById("uploadBtn").disabled = false;
+            }
+        });
+
+        document.getElementById("uploadBtn").addEventListener("click", function() {
+            if (!selectedFile) return alert("No file selected!");
+
+            let formData = new FormData();
+            formData.append("file", selectedFile);
+
+            let progressBar = document.getElementById("progressBar");
+            let progress = progressBar.querySelector("div");
+            progress.style.width = "0%";
+            progressBar.style.display = "block";
+
+            fetch("/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Error: " + data.error);
+                } else {
+                    uploadedFileName = data.filename;
+                    document.getElementById("scanBtn").disabled = false;
+                    progress.style.width = "100%";
+                }
+            })
+            .catch(error => {
+                alert("Upload failed: " + error);
+            });
+        });
+
+        document.getElementById("scanBtn").addEventListener("click", function() {
+            if (!uploadedFileName) return alert("No uploaded file to scan!");
+
+            let progressBar = document.getElementById("progressBar");
+            let progress = progressBar.querySelector("div");
+            progress.style.width = "0%";
+            progressBar.style.display = "block";
+
+            fetch("/scan", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ filename: uploadedFileName })
+            })
+            .then(response => response.json())
+            .then(data => {
+                progress.style.width = "100%";
+                document.getElementById("result").style.display = "block";
+                document.getElementById("resultText").innerText = JSON.stringify(data, null, 4);
+            })
+            .catch(error => {
+                alert("Scan failed: " + error);
+            });
+        });
+    </script>
+</body>
+</html>

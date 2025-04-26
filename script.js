@@ -27,3 +27,33 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.particle-bg').appendChild(particle);
     }
 });
+
+document.getElementById("apkFile").addEventListener("change", function () {
+    let file = this.files[0];
+    if (file) {
+        document.getElementById("selectedFileName").innerText = file.name;
+    }
+});
+
+document.getElementById("uploadBtn").addEventListener("click", function () {
+    let fileInput = document.getElementById("apkFile");
+    if (fileInput.files.length === 0) {
+        alert("Please select an APK file.");
+        return;
+    }
+
+    let formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    document.getElementById("uploadProgress").classList.remove("hidden");
+    
+    fetch("/upload", { method: "POST", body: formData })
+        .then(response => response.json())
+        .then(data => {
+            if (data.filename) {
+                document.getElementById("scanBtn").classList.remove("hidden");
+                document.getElementById("scanBtn").setAttribute("data-filename", data.filename);
+            }
+        });
+});
+
