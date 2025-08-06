@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name // Blog</title>
+    <title>About Me // Your Name</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,8 +21,8 @@
                 <p class="profile-bio">Full-Stack Developer | Tech Enthusiast | Lifelong Learner</p>
             </div>
             <nav class="nav-menu">
-                <a href="index.html" class="nav-item active"><i class="fas fa-home"></i> Home / Blog</a>
-                <a href="about.html" class="nav-item"><i class="fas fa-user"></i> About</a>
+                <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home / Blog</a>
+                <a href="about.html" class="nav-item active"><i class="fas fa-user"></i> About</a>
                 <a href="projects.html" class="nav-item"><i class="fas fa-folder-open"></i> Projects</a>
             </nav>
             <div class="social-links">
@@ -42,10 +42,21 @@
         <div class="main-content-wrapper">
              <button id="sidebar-toggle" aria-label="Toggle Sidebar"><i class="fas fa-bars"></i></button>
             <main id="main-content">
-                <section id="home" class="content-section">
-                    <h2 class="section-title">Recent Posts</h2>
-                    <div id="posts-container" class="post-list">
-                        <!-- Posts will be dynamically inserted here by JavaScript -->
+                <section id="about" class="content-section">
+                    <h2 class="section-title">About Me</h2>
+                    <p>I started my coding journey with a fascination for how things work. This curiosity has driven me to constantly learn and adapt in the ever-evolving landscape of web development. My expertise lies in the MERN stack (MongoDB, Express, React, Node.js), but I'm always excited to explore new tools and frameworks.</p>
+                    <p>Beyond coding, I'm passionate about open-source collaboration, cybersecurity principles, and advocating for a more accessible web. When I unplug, I enjoy hiking, photography, and getting lost in a good book.</p>
+                    <div class="skills">
+                        <h3>Core Skills:</h3>
+                        <div class="skill-tags">
+                            <span>JavaScript (ES6+)</span>
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>HTML5 & CSS3</span>
+                            <span>SQL & NoSQL</span>
+                            <span>REST APIs</span>
+                            <span>Git & GitHub</span>
+                        </div>
                     </div>
                 </section>
                 <footer class="main-footer">
@@ -55,7 +66,6 @@
         </div>
     </div>
 
-    <script src="js/posts.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
