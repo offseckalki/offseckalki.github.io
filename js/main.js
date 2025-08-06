@@ -9,18 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function checkSystemPreference() {
-        // Check if the user has a system preference for dark mode
         return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
-    // Determine the initial theme
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = checkSystemPreference();
-    
-    // Priority: 1. Saved theme, 2. System preference, 3. Default to light
     const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'light');
     applyTheme(initialTheme);
-
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -30,18 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Listen for changes in system preference
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        // Only change if the user hasn't manually set a theme
         if (!localStorage.getItem('theme')) {
             const newTheme = event.matches ? 'dark' : 'light';
             applyTheme(newTheme);
         }
     });
 
-
     // --- Mobile Sidebar Toggle ---
-    // This code remains the same and will work on all pages
     const sidebar = document.getElementById('sidebar');
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const mainContent = document.getElementById('main-content');
@@ -60,19 +51,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if(mainContent) mainContent.addEventListener('click', closeSidebar);
     document.querySelectorAll('.nav-item').forEach(item => {
-        // Check if it's a link to another page before adding the close listener
-        if (item.getAttribute('href').startsWith('#')) {
-            item.addEventListener('click', closeSidebar);
+        if (!item.getAttribute('href').startsWith('#')) {
+             item.addEventListener('click', closeSidebar);
         }
     });
 
-    // --- Post Rendering ---
-    // This will only run on the Home Page (index.html)
+    // --- LOGIC FOR HOME PAGE (index.html) ---
     const postsContainer = document.getElementById('posts-container');
     if (postsContainer && typeof postsData !== 'undefined') {
-        postsData.forEach(post => {
+        postsData.forEach((post, index) => {
             const postElement = document.createElement('a');
-            postElement.href = '#'; 
+            
+            // *** UPDATED LINE ***
+            // The link now points to the posts folder
+            postElement.href = `/post.html?id=${index}`; 
+            
             postElement.classList.add('post-item');
 
             postElement.innerHTML = `
@@ -83,6 +76,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
             postsContainer.appendChild(postElement);
         });
+    }
+
+    // --- LOGIC FOR POST PAGE (posts/post.html) ---
+    const postContentArea = document.getElementById('post-content-area');
+    if (postContentArea && typeof postsData !== 'undefined') {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+        
+        const post = postsData[postId];
+
+        if (post) {
+            document.title = `${post.title} //offseckalki`;
+            document.getElementById('post-title').textContent = post.title;
+            document.getElementById('post-date').textContent = post.date;
+            document.getElementById('post-body').innerHTML = post.content;
+        } else {
+            document.getElementById('post-title').textContent = "Error: Post not found";
+            document.getElementById('post-body').innerHTML = "<p>The requested post could not be found. Please check the URL or return to the <a href='../index.html'>home page</a>.</p>";
+        }
     }
 
 });
