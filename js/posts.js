@@ -96,7 +96,7 @@ echo; id
             <p>This CVE is a classic reminder: <strong>simple misconfigurations lead to critical impact</strong>. My goal with testing such exploits isn't just execution — it’s education. Security isn’t about paranoia — it’s about precision.</p>
             <p class="signature">~ OffsecKalki</p>
         `
-    }
+    },
 
     {
     title: "Breaking Access Control: A Real-World Multi-System Data Exposure",
