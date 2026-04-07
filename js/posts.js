@@ -6,165 +6,356 @@
 
 const postsData = [
     {
-    title: "I Changed One Number… and Ended Up Accessing Multiple School Databases",
-    date: "April 07, 2026",
-    excerpt: "A simple parameter change led to IDOR, multi-school data exposure, and even access to previous academic records.",
-    content: `
-        <p>This wasn’t supposed to be a big find.</p>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.wrap {
+  font-family: 'Syne', var(--font-sans), sans-serif;
+  color: var(--color-text-primary);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.tag-row {
+  display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.tag {
+  font-family: 'JetBrains Mono', var(--font-mono), monospace;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 0.5px solid;
+}
+.tag-red { background: #FCEBEB; color: #A32D2D; border-color: #F09595; }
+.tag-amber { background: #FAEEDA; color: #854F0B; border-color: #EF9F27; }
+.tag-blue { background: #E6F1FB; color: #185FA5; border-color: #85B7EB; }
+.tag-gray { background: #F1EFE8; color: #5F5E5A; border-color: #B4B2A9; }
+
+@media (prefers-color-scheme: dark) {
+  .tag-red { background: #501313; color: #F7C1C1; border-color: #A32D2D; }
+  .tag-amber { background: #412402; color: #FAC775; border-color: #854F0B; }
+  .tag-blue { background: #042C53; color: #B5D4F4; border-color: #185FA5; }
+  .tag-gray { background: #2C2C2A; color: #D3D1C7; border-color: #5F5E5A; }
+}
+
+.hero-title {
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.hero-sub {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin-bottom: 2rem;
+}
+
+.divider {
+  border: none;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  margin: 1.75rem 0;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.terminal {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+.t-prompt { color: #888; }
+.t-path { color: #7dd3ab; }
+.t-arrow { color: #f59e0b; }
+.t-result { color: #e2e8f0; }
+.t-comment { color: #555; }
+.t-danger { color: #f87171; }
+.t-info { color: #60a5fa; }
+
+.callout {
+  border-left: 3px solid;
+  padding: 0.85rem 1rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.25rem 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.callout-red { border-color: #E24B4A; background: #FCEBEB; color: #791F1F; }
+.callout-amber { border-color: #EF9F27; background: #FAEEDA; color: #633806; }
+.callout-blue { border-color: #378ADD; background: #E6F1FB; color: #0C447C; }
+.callout-gray { border-color: #888780; background: #F1EFE8; color: #444441; }
+
+@media (prefers-color-scheme: dark) {
+  .callout-red { border-color: #E24B4A; background: #501313; color: #F7C1C1; }
+  .callout-amber { border-color: #BA7517; background: #412402; color: #FAC775; }
+  .callout-blue { border-color: #378ADD; background: #042C53; color: #B5D4F4; }
+  .callout-gray { border-color: #888780; background: #2C2C2A; color: #D3D1C7; }
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin: 1.25rem 0;
+}
+.impact-card {
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 0.85rem;
+  border: 0.5px solid var(--color-border-tertiary);
+}
+.impact-icon {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.impact-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+.impact-sub {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 1.25rem 0;
+}
+.chain-node {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 0.5px solid;
+  white-space: nowrap;
+}
+.cn-blue { background: #E6F1FB; color: #185FA5; border-color: #85B7EB; }
+.cn-amber { background: #FAEEDA; color: #854F0B; border-color: #EF9F27; }
+.cn-red { background: #FCEBEB; color: #A32D2D; border-color: #F09595; }
+.cn-gray { background: #F1EFE8; color: #5F5E5A; border-color: #B4B2A9; }
+
+@media (prefers-color-scheme: dark) {
+  .cn-blue { background: #042C53; color: #B5D4F4; border-color: #185FA5; }
+  .cn-amber { background: #412402; color: #FAC775; border-color: #854F0B; }
+  .cn-red { background: #501313; color: #F7C1C1; border-color: #A32D2D; }
+  .cn-gray { background: #2C2C2A; color: #D3D1C7; border-color: #5F5E5A; }
+}
+
+.chain-arrow {
+  color: var(--color-text-tertiary);
+  font-size: 16px;
+}
+
+.sig {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 0.5px solid var(--color-border-tertiary);
+}
+</style>
+
+<div class="wrap">
+
+  <div class="tag-row">
+    <span class="tag tag-red">CVE Class: IDOR</span>
+    <span class="tag tag-red">SQL Injection</span>
+    <span class="tag tag-amber">Multi-school scope</span>
+    <span class="tag tag-blue">Responsible Disclosure</span>
+    <span class="tag tag-gray">Bug Bounty</span>
+  </div>
+
+  <h1 class="hero-title">I Changed One Number.<br>Then I Found Everything.</h1>
+  <p class="hero-sub">How a single predictable parameter unraveled into IDOR, SQL injection, multi-school data exposure, and admin credential leakage — all from a school registration portal.</p>
+  <p class="meta">OffsecKalki &nbsp;·&nbsp; April 07, 2026 &nbsp;·&nbsp; Web Application Security</p>
+
+  <hr class="divider">
+
+  <p class="section-label">01 — the discovery</p>
+  <h2>It started with a receipt URL</h2>
+  <p>Nothing about the registration portal looked suspicious at first. Forms, payment confirmations, student records — routine stuff. Then I caught a parameter sitting naked in the URL.</p>
+
+  <div class="terminal">
+    <span class="t-path">/print_payment.php</span><span class="t-result">?regno=</span><span class="t-danger">1765</span>
+  </div>
+
+  <p>No session token. No authorization header. Just a bare integer. I changed it by one.</p>
+
+  <div class="terminal">
+    <span class="t-comment"># Before</span><br>
+    <span class="t-path">regno=</span><span class="t-result">1765</span><br><br>
+    <span class="t-comment"># After</span><br>
+    <span class="t-path">regno=</span><span class="t-danger">1766</span><br><br>
+    <span class="t-result">→ Different student. Full registration data. No error.</span>
+  </div>
+
+  <div class="callout callout-red">
+    Classic IDOR — Insecure Direct Object Reference. The server returns another user's record with zero authorization check. The IDs were sequential, meaning the entire database was enumerable by just counting up.
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-label">02 — the pivot</p>
+  <h2>IDOR was just the entry point</h2>
+  <p>While probing further endpoints I noticed the backend wasn't sanitizing inputs. The same parameter that leaked student records also fed unsanitized values into database queries.</p>
+
+  <p>I ran sqlmap against it.</p>
+
+  <div class="terminal">
+    <span class="t-info">[INFO]</span><span class="t-result"> starting dictionary-based cracking (md5_generic_passwd)</span><br>
+    <span class="t-info">[INFO]</span><span class="t-result"> starting 6 processes</span><br>
+    <span class="t-comment">Database: [redacted]</span><br>
+    <span class="t-comment">Table: user</span><br>
+    <span class="t-comment">[29 entries]</span><br><br>
+    <span class="t-result">userloginid &nbsp;|&nbsp; pwd &nbsp;|&nbsp; role &nbsp;|&nbsp; userpassword (MD5)</span><br>
+    <span class="t-danger">adminmg &nbsp;·&nbsp; [REDACTED] &nbsp;·&nbsp; admin panel &nbsp;·&nbsp; [hash]</span><br>
+    <span class="t-danger">management &nbsp;·&nbsp; [REDACTED] &nbsp;·&nbsp; management &nbsp;·&nbsp; [hash]</span><br>
+    <span class="t-danger">omanagement &nbsp;·&nbsp; [REDACTED] &nbsp;·&nbsp; office management &nbsp;·&nbsp; [hash]</span><br>
+    <span class="t-comment">... 26 more entries (admin, it panel, user roles across all schools)</span><br><br>
+    <span class="t-info">[INFO]</span><span class="t-result"> table dumped to CSV</span>
+  </div>
+
+  <div class="callout callout-amber">
+    The user table contained 29 entries: admins, management, IT panel users, and standard users — all with MD5-hashed passwords. Several were cracked instantly. Some accounts had plaintext passwords stored alongside the hash.
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-label">03 — the scope</p>
+  <h2>It wasn't one school. It was several.</h2>
+  <p>The backend was a shared multi-tenant system. Multiple school branches operated under the same codebase, the same database structure, and the same vulnerable endpoints.</p>
+
+  <div class="chain">
+    <span class="chain-node cn-gray">Single URL</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-node cn-blue">IDOR on regno</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-node cn-amber">SQLi via same param</span>
+    <span class="chain-arrow">→</span>
+    <span class="chain-node cn-red">Multi-school DB dump</span>
+  </div>
+
+  <p>Changing the directory in the URL path also surfaced records from a previous academic year — historical student data, still fully accessible, same issue.</p>
+
+  <div class="terminal">
+    <span class="t-path">/REG_2627/</span><span class="t-result">  → current year records</span><br>
+    <span class="t-path">/REG_2526/</span><span class="t-result">  → previous year — still exposed, same vuln</span>
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-label">04 — the irony</p>
+  <h2>They knew what validation looked like</h2>
+  <p>One endpoint actually had proper access control:</p>
+
+  <div class="terminal">
+    <span class="t-path">/SchoolPanel/validate.php</span><br>
+    <span class="t-result">→ requires vcode parameter + server-side check</span><br>
+    <span class="t-result">→ blocks unauthenticated access correctly</span>
+  </div>
+
+  <p>Security existed in the codebase. It just wasn't applied consistently. The dangerous endpoints were left open while one admin panel was locked down — creating a false sense of protection.</p>
+
+  <hr class="divider">
+
+  <p class="section-label">05 — impact</p>
+  <h2>What this actually exposed</h2>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-label">Student PII</div>
+      <div class="impact-sub">Names, parent details, registration info — entire year cohorts</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-label">Admin credentials</div>
+      <div class="impact-sub">29 users — admins, management, IT — with cracked passwords</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-label">Historical data</div>
+      <div class="impact-sub">Previous academic year records still accessible via path swap</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-label">Multi-school scope</div>
+      <div class="impact-sub">Shared backend meant all branches were affected simultaneously</div>
+    </div>
+  </div>
+
+  <div class="callout callout-red">
+    No complex exploit required. Sequential IDs + missing auth checks = full database enumerable by anyone who could count. Minors' data included. Silent — no alerts, likely no logs.
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-label">06 — root cause</p>
+  <h2>Not a clever hack. Missing basics.</h2>
+  <p>The vulnerability chain wasn't sophisticated. It collapsed from three missing fundamentals applied consistently:</p>
+
+  <div class="terminal">
+    <span class="t-comment"># What was missing</span><br>
+    <span class="t-danger">1.</span><span class="t-result"> Authorization check on every data endpoint — not just the admin panel</span><br>
+    <span class="t-danger">2.</span><span class="t-result"> Non-sequential or tokenized record identifiers</span><br>
+    <span class="t-danger">3.</span><span class="t-result"> Parameterized queries / input sanitization</span>
+  </div>
+
+  <div class="callout callout-gray">
+    Security doesn't fail loudly. It fails silently — in the endpoints nobody reviewed after launch.
+  </div>
+
+  <hr class="divider">
+
+  <p class="section-label">07 — disclosure</p>
+  <h2>Reported. No data stored. No data shared.</h2>
+  <p>Everything was disclosed responsibly to the affected party. No student or staff data was retained, copied, or published. Testing stopped once the vulnerability was confirmed — the IDOR alone was enough to establish scope without needing to go further.</p>
+
+  <div class="sig">~ OffsecKalki &nbsp;·&nbsp; Bug Hunter</div>
+
+</div>
 
-        <p>I was just going through a school registration system. Normal stuff. Forms, payment pages, student details — nothing unusual.</p>
-
-        <p>Then I saw this:</p>
-
-        <pre><code>/print_payment.php?regno=1765</code></pre>
-
-        <p>A direct parameter. No login. No token. Just <code>regno</code>.</p>
-
-        <p>So yeah… I did what anyone curious would do.</p>
-
-        <p>I changed it.</p>
-
-        <pre><code>1765 → 1766</code></pre>
-
-        <p>And the page refreshed with a completely different student.</p>
-
-        <p>I just sat there for a second.</p>
-
-        <p>No error. No restriction. Nothing.</p>
-
-        <p>That’s when it clicked — this is IDOR.</p>
-
-        <h2>🧠 It Got Worse Pretty Fast</h2>
-
-        <p>The IDs were sequential.</p>
-
-        <p>Which basically means… you don’t need to “hack” anything.</p>
-
-        <p>You just count.</p>
-
-        <p>1765, 1766, 1767… and so on.</p>
-
-        <p>Every request returned a new student’s data.</p>
-
-        <p>Names. Parent details. Registration info.</p>
-
-        <p>No authentication. No checks.</p>
-
-        <p>If someone wanted, they could dump the entire database in minutes.</p>
-
-        <p>At this point, it was already serious. But I kept going.</p>
-
-        <h2>🌐 Then I Realized Something Bigger</h2>
-
-        <p>While testing more endpoints, I noticed something odd.</p>
-
-        <p>The system wasn’t just for one school.</p>
-
-        <p>It was shared.</p>
-
-        <p>Multiple branches… maybe even multiple institutions.</p>
-
-        <p>Same structure. Same behavior.</p>
-
-        <p>Same vulnerability.</p>
-
-        <p>That’s when it hit me — this isn’t a single-app issue.</p>
-
-        <p>This is one backend exposing data across multiple schools.</p>
-
-        <h2>⏳ And Then… Old Data Showed Up</h2>
-
-        <p>I tried changing something else — the directory.</p>
-
-        <pre><code>/REG_2627/ → current  
-/REG_2526/ → previous</code></pre>
-
-        <p>And it worked.</p>
-
-        <p>I was now looking at data from a previous academic year.</p>
-
-        <p>Older records. Still accessible. Same issue.</p>
-
-        <p>That honestly made it worse.</p>
-
-        <p>It wasn’t just current students — it was historical data too.</p>
-
-        <h2>🧪 Something Felt Off</h2>
-
-        <p>While playing around with inputs, I noticed a few weird responses.</p>
-
-        <p>Nothing fully exploitable right away, but… not clean either.</p>
-
-        <p>It looked like the backend wasn’t handling input properly.</p>
-
-        <p>Possible injection behavior.</p>
-
-        <p>I didn’t push it further — the IDOR itself was already enough.</p>
-
-        <h2>🔐 The Weird Part</h2>
-
-        <p>There actually <em>was</em> a validation system.</p>
-
-        <pre><code>/SchoolPanel/validate.php</code></pre>
-
-        <p>This one required a verification code (<code>vcode</code>) and blocked access properly.</p>
-
-        <p>So clearly, they knew about security.</p>
-
-        <p>They just… didn’t apply it everywhere.</p>
-
-        <p>Some parts locked down.</p>
-
-        <p>Other parts completely open.</p>
-
-        <p>That inconsistency is what caused all of this.</p>
-
-        <h2>💥 What’s Actually Wrong Here</h2>
-
-        <ul>
-            <li>No authorization checks on critical endpoints</li>
-            <li>Sequential and predictable IDs</li>
-            <li>Security applied only in certain places</li>
-        </ul>
-
-        <p>No complex exploit. No fancy bypass.</p>
-
-        <p>Just missing checks.</p>
-
-        <h2>🚨 Real Risk</h2>
-
-        <p>If someone abused this properly:</p>
-
-        <ul>
-            <li>Full data scraping</li>
-            <li>Identity theft</li>
-            <li>Targeted phishing</li>
-            <li>Exposure of minors’ data</li>
-        </ul>
-
-        <p>And the scary part — it would be quiet.</p>
-
-        <p>No alerts. No logs (most likely).</p>
-
-        <h2>🧠 What I Took From This</h2>
-
-        <pre><code>Security doesn’t fail loudly.  
-It fails silently… in the parts nobody checks.</code></pre>
-
-        <p>This wasn’t about breaking something.</p>
-
-        <p>It was about noticing what wasn’t protected.</p>
-
-        <h2>🛡️ Responsible Disclosure</h2>
-
-        <p>I reported everything responsibly. Didn’t store any data. Didn’t go beyond what was needed to confirm the issue.</p>
-
-        <h2>🚀 Final Thought</h2>
-
-        <p>All of this… from changing one number.</p>
-
-        <p class="signature">~ OffsecKalki</p>
-    `
 },
     {
         title: "Hacking AI: The Wild West of the Machine Mind",
