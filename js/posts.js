@@ -114,8 +114,6 @@ omanagement  ·  [REDACTED]  ·  office management  ·  [hash]
         <p class="signature">~ OffsecKalki · Bug Hunter</p>
     `
 },
- 
-},
     {
         title: "Hacking AI: The Wild West of the Machine Mind",
         date: "August 16, 2025",
