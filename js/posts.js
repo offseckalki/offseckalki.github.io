@@ -6,6 +6,167 @@
 
 const postsData = [
     {
+    title: "I Changed One Number… and Ended Up Accessing Multiple School Databases",
+    date: "April 07, 2026",
+    excerpt: "A simple parameter change led to IDOR, multi-school data exposure, and even access to previous academic records.",
+    content: `
+        <p>This wasn’t supposed to be a big find.</p>
+
+        <p>I was just going through a school registration system. Normal stuff. Forms, payment pages, student details — nothing unusual.</p>
+
+        <p>Then I saw this:</p>
+
+        <pre><code>/print_payment.php?regno=1765</code></pre>
+
+        <p>A direct parameter. No login. No token. Just <code>regno</code>.</p>
+
+        <p>So yeah… I did what anyone curious would do.</p>
+
+        <p>I changed it.</p>
+
+        <pre><code>1765 → 1766</code></pre>
+
+        <p>And the page refreshed with a completely different student.</p>
+
+        <p>I just sat there for a second.</p>
+
+        <p>No error. No restriction. Nothing.</p>
+
+        <p>That’s when it clicked — this is IDOR.</p>
+
+        <h2>🧠 It Got Worse Pretty Fast</h2>
+
+        <p>The IDs were sequential.</p>
+
+        <p>Which basically means… you don’t need to “hack” anything.</p>
+
+        <p>You just count.</p>
+
+        <p>1765, 1766, 1767… and so on.</p>
+
+        <p>Every request returned a new student’s data.</p>
+
+        <p>Names. Parent details. Registration info.</p>
+
+        <p>No authentication. No checks.</p>
+
+        <p>If someone wanted, they could dump the entire database in minutes.</p>
+
+        <p>At this point, it was already serious. But I kept going.</p>
+
+        <h2>🌐 Then I Realized Something Bigger</h2>
+
+        <p>While testing more endpoints, I noticed something odd.</p>
+
+        <p>The system wasn’t just for one school.</p>
+
+        <p>It was shared.</p>
+
+        <p>Multiple branches… maybe even multiple institutions.</p>
+
+        <p>Same structure. Same behavior.</p>
+
+        <p>Same vulnerability.</p>
+
+        <p>That’s when it hit me — this isn’t a single-app issue.</p>
+
+        <p>This is one backend exposing data across multiple schools.</p>
+
+        <h2>⏳ And Then… Old Data Showed Up</h2>
+
+        <p>I tried changing something else — the directory.</p>
+
+        <pre><code>/REG_2627/ → current  
+/REG_2526/ → previous</code></pre>
+
+        <p>And it worked.</p>
+
+        <p>I was now looking at data from a previous academic year.</p>
+
+        <p>Older records. Still accessible. Same issue.</p>
+
+        <p>That honestly made it worse.</p>
+
+        <p>It wasn’t just current students — it was historical data too.</p>
+
+        <h2>🧪 Something Felt Off</h2>
+
+        <p>While playing around with inputs, I noticed a few weird responses.</p>
+
+        <p>Nothing fully exploitable right away, but… not clean either.</p>
+
+        <p>It looked like the backend wasn’t handling input properly.</p>
+
+        <p>Possible injection behavior.</p>
+
+        <p>I didn’t push it further — the IDOR itself was already enough.</p>
+
+        <h2>🔐 The Weird Part</h2>
+
+        <p>There actually <em>was</em> a validation system.</p>
+
+        <pre><code>/SchoolPanel/validate.php</code></pre>
+
+        <p>This one required a verification code (<code>vcode</code>) and blocked access properly.</p>
+
+        <p>So clearly, they knew about security.</p>
+
+        <p>They just… didn’t apply it everywhere.</p>
+
+        <p>Some parts locked down.</p>
+
+        <p>Other parts completely open.</p>
+
+        <p>That inconsistency is what caused all of this.</p>
+
+        <h2>💥 What’s Actually Wrong Here</h2>
+
+        <ul>
+            <li>No authorization checks on critical endpoints</li>
+            <li>Sequential and predictable IDs</li>
+            <li>Security applied only in certain places</li>
+        </ul>
+
+        <p>No complex exploit. No fancy bypass.</p>
+
+        <p>Just missing checks.</p>
+
+        <h2>🚨 Real Risk</h2>
+
+        <p>If someone abused this properly:</p>
+
+        <ul>
+            <li>Full data scraping</li>
+            <li>Identity theft</li>
+            <li>Targeted phishing</li>
+            <li>Exposure of minors’ data</li>
+        </ul>
+
+        <p>And the scary part — it would be quiet.</p>
+
+        <p>No alerts. No logs (most likely).</p>
+
+        <h2>🧠 What I Took From This</h2>
+
+        <pre><code>Security doesn’t fail loudly.  
+It fails silently… in the parts nobody checks.</code></pre>
+
+        <p>This wasn’t about breaking something.</p>
+
+        <p>It was about noticing what wasn’t protected.</p>
+
+        <h2>🛡️ Responsible Disclosure</h2>
+
+        <p>I reported everything responsibly. Didn’t store any data. Didn’t go beyond what was needed to confirm the issue.</p>
+
+        <h2>🚀 Final Thought</h2>
+
+        <p>All of this… from changing one number.</p>
+
+        <p class="signature">~ OffsecKalki</p>
+    `
+},
+    {
         title: "Hacking AI: The Wild West of the Machine Mind",
         date: "August 16, 2025",
         excerpt: "AI hacking goes far beyond making a chatbot say bad things — it's the new frontier of cybersecurity, echoing the chaotic early days of the web.",
@@ -96,117 +257,7 @@ echo; id
             <p>This CVE is a classic reminder: <strong>simple misconfigurations lead to critical impact</strong>. My goal with testing such exploits isn't just execution — it’s education. Security isn’t about paranoia — it’s about precision.</p>
             <p class="signature">~ OffsecKalki</p>
         `
-    },
-
-    {
-    title: "Breaking Access Control: A Real-World Multi-System Data Exposure",
-    date: "April 07, 2026",
-    excerpt: "A deep dive into discovering IDOR, multi-session exposure, and inconsistent validation in a centralized student system.",
-    content: `
-        <p>During a recent security assessment, I encountered a centralized registration system used across multiple institutions. What initially appeared to be a simple data access feature quickly turned into a full-blown access control failure.</p>
-
-        <h2>🧠 Initial Discovery</h2>
-        <p>The application exposed student registration data via a direct URL parameter:</p>
-
-        <pre><code>/print_payment.php?regno=1765</code></pre>
-
-        <p>Out of curiosity, I modified the <code>regno</code> parameter.</p>
-
-        <pre><code>regno=1765 → Student A  
-regno=1766 → Student B</code></pre>
-
-        <p>This confirmed a classic <strong>IDOR (Insecure Direct Object Reference)</strong>.</p>
-
-        <div class="image">
-            <img src="images/idor_redacted_1.png" alt="IDOR Example 1">
-        </div>
-
-        <div class="image">
-            <img src="images/idor_redacted_2.png" alt="IDOR Example 2">
-        </div>
-
-        <h2>💣 Impact</h2>
-        <ul>
-            <li>Unauthorized access to student personal data</li>
-            <li>Exposure of parent information</li>
-            <li>No authentication required</li>
-            <li>Sequential IDs allowing full enumeration</li>
-        </ul>
-
-        <pre><code>An attacker could automate and extract all records within minutes</code></pre>
-
-        <h2>🌐 Multi-System Exposure</h2>
-        <p>Further analysis revealed the system was shared across multiple institutions.</p>
-
-        <ul>
-            <li>Single vulnerability → multiple schools affected</li>
-            <li>Centralized database exposure</li>
-        </ul>
-
-        <div class="image">
-            <img src="images/multi_branch_redacted.png" alt="Multi Branch Exposure">
-        </div>
-
-        <h2>⏳ Historical Data Exposure</h2>
-        <p>By modifying directory paths:</p>
-
-        <pre><code>/REG_2627/ → Current session  
-/REG_2526/ → Previous session</code></pre>
-
-        <p>I was able to access records from previous academic years.</p>
-
-        <p><strong>This significantly increased the scope and severity.</strong></p>
-
-        <h2>🧪 Injection Behavior</h2>
-        <p>While digging deeper, I identified behavior suggesting a possible injection vulnerability, indicating backend data exposure risks.</p>
-
-        <div class="image">
-            <img src="images/injection_redacted.png" alt="Injection Behavior">
-        </div>
-
-        <h2>🔐 Validation Mechanism</h2>
-        <p>The application included a validation system:</p>
-
-        <pre><code>/SchoolPanel/validate.php</code></pre>
-
-        <p>This required a verification code (<code>vcode</code>) and properly restricted access to certain internal panels.</p>
-
-        <p>However:</p>
-        <ul>
-            <li>Some parts were protected</li>
-            <li>Critical endpoints completely bypassed validation</li>
-        </ul>
-
-        <p><strong>This resulted in inconsistent access control.</strong></p>
-
-        <h2>💥 Root Cause</h2>
-        <ul>
-            <li>Security applied only to selected modules</li>
-            <li>No authorization checks on sensitive endpoints</li>
-            <li>Predictable and sequential identifiers</li>
-        </ul>
-
-        <h2>🚨 Real-World Risks</h2>
-        <ul>
-            <li>Mass data scraping</li>
-            <li>Identity theft</li>
-            <li>Targeted phishing</li>
-            <li>Exposure of minors' sensitive data</li>
-        </ul>
-
-        <h2>🧠 Key Takeaway</h2>
-        <pre><code>Security is not about adding protection —  
-it’s about applying it everywhere consistently.</code></pre>
-
-        <h2>🛡️ Responsible Disclosure</h2>
-        <p>All findings were responsibly disclosed. Testing was strictly limited, and no sensitive data was stored or misused.</p>
-
-        <h2>🚀 Final Thoughts</h2>
-        <p>This case highlights a common failure in modern applications — partial security implementation. A single overlooked endpoint can completely undermine an otherwise protected system.</p>
-
-        <p class="signature">~ OffsecKalki</p>
-    `
-},
+    }
     // NAYA POST YAHAN ADD KAREIN. Example:
     /*
     {
