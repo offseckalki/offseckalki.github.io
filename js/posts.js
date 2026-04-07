@@ -97,7 +97,116 @@ echo; id
             <p class="signature">~ OffsecKalki</p>
         `
     }
-    
+
+    {
+    title: "Breaking Access Control: A Real-World Multi-System Data Exposure",
+    date: "April 07, 2026",
+    excerpt: "A deep dive into discovering IDOR, multi-session exposure, and inconsistent validation in a centralized student system.",
+    content: `
+        <p>During a recent security assessment, I encountered a centralized registration system used across multiple institutions. What initially appeared to be a simple data access feature quickly turned into a full-blown access control failure.</p>
+
+        <h2>🧠 Initial Discovery</h2>
+        <p>The application exposed student registration data via a direct URL parameter:</p>
+
+        <pre><code>/print_payment.php?regno=1765</code></pre>
+
+        <p>Out of curiosity, I modified the <code>regno</code> parameter.</p>
+
+        <pre><code>regno=1765 → Student A  
+regno=1766 → Student B</code></pre>
+
+        <p>This confirmed a classic <strong>IDOR (Insecure Direct Object Reference)</strong>.</p>
+
+        <div class="image">
+            <img src="images/idor_redacted_1.png" alt="IDOR Example 1">
+        </div>
+
+        <div class="image">
+            <img src="images/idor_redacted_2.png" alt="IDOR Example 2">
+        </div>
+
+        <h2>💣 Impact</h2>
+        <ul>
+            <li>Unauthorized access to student personal data</li>
+            <li>Exposure of parent information</li>
+            <li>No authentication required</li>
+            <li>Sequential IDs allowing full enumeration</li>
+        </ul>
+
+        <pre><code>An attacker could automate and extract all records within minutes</code></pre>
+
+        <h2>🌐 Multi-System Exposure</h2>
+        <p>Further analysis revealed the system was shared across multiple institutions.</p>
+
+        <ul>
+            <li>Single vulnerability → multiple schools affected</li>
+            <li>Centralized database exposure</li>
+        </ul>
+
+        <div class="image">
+            <img src="images/multi_branch_redacted.png" alt="Multi Branch Exposure">
+        </div>
+
+        <h2>⏳ Historical Data Exposure</h2>
+        <p>By modifying directory paths:</p>
+
+        <pre><code>/REG_2627/ → Current session  
+/REG_2526/ → Previous session</code></pre>
+
+        <p>I was able to access records from previous academic years.</p>
+
+        <p><strong>This significantly increased the scope and severity.</strong></p>
+
+        <h2>🧪 Injection Behavior</h2>
+        <p>While digging deeper, I identified behavior suggesting a possible injection vulnerability, indicating backend data exposure risks.</p>
+
+        <div class="image">
+            <img src="images/injection_redacted.png" alt="Injection Behavior">
+        </div>
+
+        <h2>🔐 Validation Mechanism</h2>
+        <p>The application included a validation system:</p>
+
+        <pre><code>/SchoolPanel/validate.php</code></pre>
+
+        <p>This required a verification code (<code>vcode</code>) and properly restricted access to certain internal panels.</p>
+
+        <p>However:</p>
+        <ul>
+            <li>Some parts were protected</li>
+            <li>Critical endpoints completely bypassed validation</li>
+        </ul>
+
+        <p><strong>This resulted in inconsistent access control.</strong></p>
+
+        <h2>💥 Root Cause</h2>
+        <ul>
+            <li>Security applied only to selected modules</li>
+            <li>No authorization checks on sensitive endpoints</li>
+            <li>Predictable and sequential identifiers</li>
+        </ul>
+
+        <h2>🚨 Real-World Risks</h2>
+        <ul>
+            <li>Mass data scraping</li>
+            <li>Identity theft</li>
+            <li>Targeted phishing</li>
+            <li>Exposure of minors' sensitive data</li>
+        </ul>
+
+        <h2>🧠 Key Takeaway</h2>
+        <pre><code>Security is not about adding protection —  
+it’s about applying it everywhere consistently.</code></pre>
+
+        <h2>🛡️ Responsible Disclosure</h2>
+        <p>All findings were responsibly disclosed. Testing was strictly limited, and no sensitive data was stored or misused.</p>
+
+        <h2>🚀 Final Thoughts</h2>
+        <p>This case highlights a common failure in modern applications — partial security implementation. A single overlooked endpoint can completely undermine an otherwise protected system.</p>
+
+        <p class="signature">~ OffsecKalki</p>
+    `
+},
     // NAYA POST YAHAN ADD KAREIN. Example:
     /*
     {
