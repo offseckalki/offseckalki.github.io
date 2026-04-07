@@ -5,8 +5,56 @@
 // 'content' mein aap HTML tags (jaise <p>, <h3>, <code>) use kar sakte hain.
 
 const postsData = [
-    {
+ {
+    title: "I Changed One Number… and Ended Up Accessing Multiple School Databases",
+    date: "April 07, 2026",
+    excerpt: "A simple parameter change led to IDOR, SQL injection, multi-school data exposure, and admin credential leakage — all from a school registration portal.",
+    content: `
+        <p>Nothing about the registration portal looked suspicious at first. Forms, payment confirmations, student records — routine stuff. Then I caught a parameter sitting naked in the URL.</p>
 
+        <pre><code>/print_payment.php?regno=1765</code></pre>
+
+        <p>No session token. No authorization header. Just a bare integer. I changed it by one.</p>
+
+        <pre><code>regno=1765 → 1766</code></pre>
+
+        <p>Different student. Full registration data. No error.</p>
+
+        <h2>🧠 It Got Worse Fast</h2>
+        <p>The IDs were sequential — meaning the entire database was enumerable by just counting. Names, parent details, registration info. No authentication. No checks. If someone wanted, they could dump everything in minutes.</p>
+
+        <h2>⚙️ The Pivot: IDOR → SQL Injection</h2>
+        <p>While probing further endpoints, I noticed the backend wasn't sanitizing inputs. The same parameter that leaked student records also fed unsanitized values into database queries. I ran sqlmap against it.</p>
+        <p>The user table returned 29 entries — admins, management, IT panel accounts, and standard users across all schools. MD5-hashed passwords. Several cracked instantly. Some accounts had plaintext passwords stored alongside the hash.</p>
+
+        <h2>🌐 Multi-School Scope</h2>
+        <p>The backend was a shared multi-tenant system. Multiple branches operated under the same codebase and the same vulnerable endpoints. One URL, one parameter — every school affected simultaneously.</p>
+        <p>Swapping the directory in the URL also exposed the previous academic year's records. Historical data, still fully accessible, same issue.</p>
+
+        <pre><code>/REG_2627/  → current year
+/REG_2526/  → previous year — still exposed</code></pre>
+
+        <h2>🔐 The Irony</h2>
+        <p>One endpoint actually had proper access control — <code>/SchoolPanel/validate.php</code> required a verification code and blocked unauthenticated access correctly. Security existed in the codebase. It just wasn't applied consistently. The dangerous endpoints were left open while one panel was locked down, creating a false sense of protection.</p>
+
+        <h2>💥 Root Cause</h2>
+        <ul>
+            <li>No authorization checks on critical data endpoints</li>
+            <li>Sequential, predictable record IDs</li>
+            <li>No input sanitization — SQL injection via the same parameter</li>
+        </ul>
+
+        <h2>🚨 Real Risk</h2>
+        <p>Full data scraping. Admin credential takeover. Identity theft. Targeted phishing. Exposure of minors' data. And it would be silent — no alerts, likely no logs.</p>
+
+        <pre><code>Security doesn't fail loudly.
+It fails silently… in the endpoints nobody reviewed after launch.</code></pre>
+
+        <h2>🛡️ Responsible Disclosure</h2>
+        <p>Everything was reported responsibly to the affected party. No student or staff data was retained, copied, or published. Testing stopped once the vulnerability was confirmed.</p>
+
+        <p class="signature">~ OffsecKalki</p>
+    `
 },
     {
         title: "Hacking AI: The Wild West of the Machine Mind",
